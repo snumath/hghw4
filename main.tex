@@ -1,0 +1,217 @@
+
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage[inline]{enumitem}
+\usepackage{amsmath,amssymb,latexsym,amsfonts, amsthm}
+\usepackage[fontsize=13pt]{scrextend} % Font size
+% \usepackage{verbatim} % coding
+\usepackage{mathtools}
+
+
+\usepackage[tracking]{microtype} % Font
+\usepackage[sc,osf]{mathpazo} % Font
+\usepackage{graphicx}
+\usepackage{lipsum}
+
+% \usepackage[all]{xy} % diagram
+
+\usepackage{tikz} % diagram
+\usetikzlibrary{positioning,shapes.callouts, shapes.symbols, shapes.multipart}
+\usepackage{kotex}
+
+
+% \usepackage{tikz-cd} % diagram
+
+% \usetikzlibrary{arrows}
+% \usetikzlibrary{matrix}
+
+
+\makeatletter
+\renewenvironment{cases}[1][l]{\matrix@check\cases\env@cases{#1}}{\endarray\right.}
+\def\env@cases#1{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrace\def\arraystretch{1.2}%
+  \array{@{}#1@{\quad}l@{}}}
+\makeatother
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{2016-11988} % Top left header
+\chead{3341.202 Introduction to Mathematical Analysis} % Top center header
+\rhead{Lee Young Jae} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\newtheorem{lemma}{Lemma}
+
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\begin{titlepage}
+\centering
+{\scshape\LARGE Seoul National University \par}
+\vspace{1.5cm}
+{\huge\bfseries Introduction to\\Mathematical Analysis 2\par}
+\vspace{1cm}
+{\scshape\Large Assignment \# 4\par}
+
+
+\begin{tikzpicture}[remember picture, overlay, every text node part/.style={align=center}]
+\node (gicheol) at (.5,-6) {\includegraphics[width=80mm]{gicheol.png}};
+%\node [draw, align=left,
+         %ellipse callout,
+         %callout pointer segments = 3, anchor = pointer,
+         %callout relative pointer = {(240:1cm)},
+         %aspect = 5, above right = 0.2 and -1 cm of gicheol.north east]
+         %{\bfseries\itshape 이게 도함수도\\\bfseries\itshape  없는 게 까불어};
+\node [starburst, draw, line width=2.5pt,
+        aspect = 5, above right = 0.2 and -1 cm of gicheol.north east]
+        {\bfseries\itshape 이게 필즈상도\\\bfseries\itshape 없는 게 까불어};
+\end{tikzpicture}
+
+
+
+\vfill
+
+\arrayrulewidth=1.2pt
+\begin{tabular}{p{2.5cm}p{2cm}}
+\centering
+& \\
+\cline{2-2}
+\vspace{-.73cm}
+My Score? & \\
+\end{tabular}
+
+\vspace{5mm}
+
+
+\text{2016-11988}
+\vspace{.7cm}\par
+\textsc{\large Lee Young Jae}
+\vspace{.7cm}\par
+{\Large \today\par}
+\end{titlepage}
+
+\setlength{\parindent}{0cm}
+
+
+\begin{enumerate}[font = \Large\bfseries\itshape\space, leftmargin = 3mm, labelsep = 3mm]
+\item
+Show that $g$ (as defined in the proof of 6.3.13 Theorem of the latex-lecture notes) is Riemann integrable over $[0,2\pi]$.
+\begin{proof}
+In the lecture note, $g(t) = \frac{f(x-t)-f(x)}{\sin\frac{t}{2}}$ for $x \neq 0,2\pi$, $f$ is Riemann integrable over $[0,2\pi]$, and $(\exists x \in [0,2\pi],) \exists \delta > 0, M \in (0,\infty)$ such that $|f(x+t)-f(x)| \leq M|t|$ for $t \in (-\delta,\delta)$.
+By the assumption on $f$, $g$ is a bounded function since $|g(t)| \leq \frac{M|t|}{|\sin\frac{t}{2}|} \leq 2M$ on $t \in (-\delta,\delta)$. %and $g$ has a periodic extension.
+For every $\epsilon$ such that $0 < \epsilon < \delta$, $\int_\epsilon^\pi g(t)dt$ exists and $|int_0^\epsilon g(t)dt| \leq 2M\epsilon$.
+Therefore, Upper sum of $\int_0^\pi g(t)dt$ is smaller than $2M\epsilon + \int_\epsilon^\pi g(t)dt$, and lower sum of $\int_0^\pi g(t)dt$ is greater than $-2M\epsilon + \int_\epsilon^\pi g(t)dt$ for any $\epsilon > 0$.
+Letting $\epsilon \rightarrow 0$ to get the limit of the upper sum and lower sum of $g$ are equivalent.
+Since $\int_0^\pi g(t)dt$ is bounded, $\int_0^\pi g(t)dt$ exists.
+Similar for $[\pi,2\pi]$.
+Therefore, $g$ is Riemann-integrable over $[0,2\pi]$
+\end{proof}
+
+\item
+Show that $\sum_{k=1}^\infty \frac{\sin kx}{k}$ converges uniformly on $[\delta, 2\pi-\delta]$ for any $\delta \in (0,\pi)$.
+\begin{proof}
+Straightforward from 3.
+$\sum_{k=1}^\infty \frac{\sin kx}{k}$ converges to $(1-\delta_0)\frac{\pi-x}{2}$, pointwisely converges on $[\delta,2\pi-\delta]$ and it is continuous on $[\delta,2\pi-\delta]$ for any $\delta \in (0,2\pi)$, piecewisely continously differentiable.
+\end{proof}
+
+\item
+Let $f \in V$ be continuous and piecewise continuously differentiable, i.e. there is a partition $0 = t_0 < t_1 < \cdots < t_n = 2\pi$, such that
+$f : [t_{k-1}, t_k] \rightarrow \mathbb{C}$ is continuously differentiable for any $k \in \{ 1,\cdots, n\}$.
+Show that:
+\begin{enumerate}[label=(\roman*)]
+\item If $(c_n)_{n\in\mathbb{Z}}$ (resp. $(\gamma_n)_{n\in\mathbb{Z}}$) are the Fourier coefficients of $f$ (resp. $f'$), then
+$$c_n = \frac{-i\gamma_n}{n}, \quad n \neq 0.$$
+
+\item $F_n[f] \rightarrow f$ uniformly, i.e. the Fourier series of $f$ converges uniformly to $f$.
+\end{enumerate}
+
+\begin{proof}
+\begin{enumerate}[label=(\roman*)]
+\item
+By assumption, $f$ is integrable on any interval $[a,b] \subset [0,2\pi]$.
+Therefore, we can apply Fubini's theorem.
+$$
+\begin{aligned}
+c_n &= \int_0^{2\pi} f(x)e^{-inx}dx\\
+&= \int_0^{2\pi} \left(\int_0^x f'(y)dy\right)e^{-inx}dx\\
+&= \int_0^{2\pi} \int_0^{x} f'(y) e^{-inx}dydx\\
+&= \int_{0 \leq x \leq y \leq 2\pi} f'(y)e^{-inx} dA\\
+&= \int_0^{2\pi} \int_0^{y} f'(y)e^{-inx}dxdy\\
+&= \int_0^{2\pi} f'(y) \frac{e^{-iny}-1}{in}dy\\
+&= -\frac{i}{n} \int_0^{2\pi} f'(y) e^{-iny}dy + \frac{i}{n}(f(2\pi) - f(0))\\
+&= \frac{-i\gamma_n}{n}
+\end{aligned}
+$$
+for $ n\neq 0$.
+
+\item
+Note that $f$ is complex-valued function and $C^1$ in $\mathbb{C}$ is equivalent to $C^\infty$ in $\mathbb{C}$.
+% Also, we can assume that $f$ is continuously differentiable since we can molificate the piecewise continuously differentiable function to continuously differentiable function.
+
+By Bessel's inequality $\sum |c_n| = \sum \frac{\gamma_n}{n} \leq (\sum \frac{1}{n^2})^{1/2} (\sum \gamma_n^2)^{1/2} < \infty$, therefore $|c_n|$ converges absolutely and $F_n(f)$ converges absolutely.
+The sum of the Fourier series converges pointwise to $f$ everywhere since $f$ is continuous (i.e. no jump anywhere).
+Therefore,
+$\sup |f(x)-F_n(f)(x)| \leq \sup \{\sum_{k=n+1}^\infty |c_ke^{ikx}|\} \leq \sum_{k=n+1}^\infty |c_n| \rightarrow 0$.
+Therefore, $F_n(x) \rightarrow f$ uniformly.
+\end{enumerate}
+\end{proof}
+
+\item
+Show that the improper integrals
+$$\int_0^\infty \cos(x^2)dx, \enspace \int_0^\infty \sin(x^2)dx$$
+both converge.
+Then show that they both converge to the same value $\sqrt{\frac{\pi}{8}}$.\\
+\textit{Hint:} Consider the periodic extension of $F : [0,2\pi] \rightarrow \mathbb{C}, F(x) := e^{i\frac{x^2}{2\pi}}$ to $\mathbb{R}$ and show that for its Fourier coefficients $(c_n)_{n\in\mathbb{Z}}$ it holds
+$$1 = \sum_{n=-\infty}^\infty c_n = \frac{1-i}{2\pi} \int_{-\infty}^\infty e^{i\frac{x^2}{2\pi}}dx.$$
+
+\begin{proof}
+Let $F(x) = e^{i\frac{x^2}{2\pi}} = cos(\frac{x^2}{2\pi}) + i\sin(\frac{x^2}{2\pi})$ and $(c_n)_{n\in\mathbb{Z}}$ be its Fourier coefficients.
+Then,
+$$
+\begin{aligned}
+c_n &= \int_0^{2\pi} F(x) e^{-inx}dx\\
+&= \int_0^{2\pi} e^{i \frac{x^2 - 2 n\pi x}{2\pi}}dx\\
+&= \int_0^{2\pi} e^{i(\frac{(x-n\pi)^2}{2\pi} - \frac{n^2\pi}{2})}dx\\
+&= \int_{n\pi}^{(n+2)\pi} e^{-in^2\pi/2} e^{\frac{ix^2}{2\pi}}dx\\
+&= a_n\int_{n\pi}^{(n+2)\pi} F(x)dx,
+\end{aligned}
+$$
+where $a_n = \frac{1}{2\pi}$ if $n$ is even number and $a_n = \frac{-i}{2\pi}$ if $n$ is odd number.
+Therefore, $\sum_{n=-\infty}^{\infty} c_n = \frac{1-i}{2\pi}\int_{-\infty}^{\infty}F(x)dx$.
+Moreover, since $c_n = -c_{-n}$ and $c_0 = 1$,
+$$1 = \sum_{n=-\infty}^\infty c_n = \frac{1-i}{2\pi} \int_{-\infty}^\infty e^{i\frac{x^2}{2\pi}}dx.$$
+Therefore, $\int_{0}^\infty F(x)dx = \frac{(1+i)\pi}{2}$, $\int_0^{\infty} e^{x^2} dx = \sqrt{\frac{\pi}{8}}(1+i)$, and
+$\int_0^{\infty}\cos(x^2)dx = \int_0^{\infty} \sin(x^2) = \sqrt{\frac{\pi}{8}}$.
+\end{proof}
+\end{enumerate}
+\end{document}
